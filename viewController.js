@@ -59,7 +59,9 @@ function getRestaurantDetails(restaurant) {
     addToCartButtons.forEach(button => {
         button.addEventListener('click', event => {
             console.log(event);
-            addToCart()
+            addToCart(menuItems.find(item => {
+                return event.path[0].dataset.name === item.name;
+            }));
         });
     });
     instance.open();
