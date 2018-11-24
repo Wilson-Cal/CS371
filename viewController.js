@@ -12,6 +12,7 @@ let spinner = document.getElementById('loader');
 let restaurantContent = document.getElementById('restaurantContent');
 let searchContent = document.getElementById('searchContent');
 let searchBarView = document.getElementById('search');
+let favoriteToggle = document.getElementById('favoriteToggle');
 let menuItems = [{
     name: 'Hamburger',
     price: 6.99
@@ -36,7 +37,7 @@ function getRestaurantDetails(restaurant) {
     let modal = document.getElementById('modal1');
     let modalContent = document.getElementById('modalContent');
     let instance = M.Modal.getInstance(modal);
-    let templateStr = `<h3>${restaurant.restaurant.name}</h3>`;
+    let templateStr = `<h3 id="restaurantName">${restaurant.restaurant.name}</h3>`;
     templateStr += `<p>Overall Rating: ${restaurant.restaurant.user_rating.aggregate_rating}/5</p>`
     templateStr += `<p>Price Rating: ${restaurant.restaurant.price_range}/5</p>`;
     templateStr += `<p>Cuisine: ${restaurant.restaurant.cuisines}</p>`;
@@ -56,7 +57,6 @@ function getRestaurantDetails(restaurant) {
     });
     modalContent.innerHTML = templateStr;
     let addToCartButtons = document.querySelectorAll('#addToCart');
-    console.log(addToCartButtons);
     addToCartButtons.forEach(button => {
         button.addEventListener('click', event => {
             console.log(event);
@@ -65,6 +65,10 @@ function getRestaurantDetails(restaurant) {
             }));
         });
     });
+    // Check if this restaurant is already favorited
+    if (userModel.favorites.includes(restaurant.restaurant.name)) {
+        favoriteToggle.innerHTML = '<i class="material-icons left">star</i>Remove from Favorites'
+    }
     instance.open();
 }
 
@@ -200,6 +204,21 @@ searchBarView.addEventListener('keyup', event => {
         searchContent.style.display = 'none';
         restaurantContent.style.display = 'block';
     }
+});
+
+favoriteToggle.addEventListener('click', event => {
+    let restaurantName = document.getElementById('restaurantName').innerHTML;
+    if (event.path[0].innerText.includes('Add')) {
+        userModel.favorites.push(restaurantName);
+    } else if (event.path[0].innerText.includes('Remove')) {
+        let index = userModel.favorites.findIndex(favorite => {
+            return favorite.toLowerCase() === restaurantName.toLowerCase();
+        });
+        if (index > -1) {
+            userModel.favorites.splice(index, 1);
+        }
+    }
+    console.log(userModel.favorites);
 });
 
 // Start Here
