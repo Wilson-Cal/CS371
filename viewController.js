@@ -18,7 +18,7 @@ function addCards(view, template) {
 function setupFavorties() {
     let favoritesView = document.getElementById('favorites');
     let favoriteRestaurants = restaurantModel.getFavoriteRestaurants(userModel.favorites);
-    let tempStr = ''
+    let templateStr = ''
     favoriteRestaurants.forEach((fRestaurant, i) => {
         let cardTemplate = `<div class="card-panel teal">
                                 <span class="white-text">${fRestaurant.name}</span>
@@ -30,13 +30,13 @@ function setupFavorties() {
         }
         templateStr += `<div class="col s12 m4 l3">${cardTemplate}</div>`;
     });
-    favoritesView.innerHTML = tempStr;
+    favoritesView.innerHTML = templateStr;
 }
 
 function setupPopular() {
     let popularView = document.getElementById('popular');
     let popularRestaurants = restaurantModel.getPopularRestaurants();
-    let tempStr = ''
+    let templateStr = ''
     popularRestaurants.forEach((pRestaurant, i) => {
         let cardTemplate = `<div class="card-panel teal">
                                 <span class="white-text">${pRestaurant.name}</span>
@@ -48,13 +48,13 @@ function setupPopular() {
         }
         templateStr += `<div class="col s12 m4 l3">${cardTemplate}</div>`;
     });
-    popularView.innerHTML = tempStr;
+    popularView.innerHTML = templateStr;
 }
 
 function setupAlphabetical() {
     let alphabeticalView = document.getElementById('alphabetical');
     let alphabeticalRestaurants = restaurantModel.getAlphabeticalRestaurants();
-    let tempStr = ''
+    let templateStr = ''
     alphabeticalRestaurants.forEach((aRestaurant, i) => {
         let cardTemplate = `<div class="card-panel teal">
                                 <span class="white-text">${aRestaurant.name}</span>
@@ -66,7 +66,7 @@ function setupAlphabetical() {
         }
         templateStr += `<div class="col s12 m4 l3">${cardTemplate}</div>`;
     });
-    alphabeticalView.innerHTML = tempStr;
+    alphabeticalView.innerHTML = templateStr;
 }
 
 
