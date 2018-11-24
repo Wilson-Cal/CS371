@@ -10,6 +10,7 @@ let userModel = new UserModel();
 let restaurantModel = new RestaurantModel();
 let spinner = document.getElementById('loader');
 let restaurantContent = document.getElementById('restaurantContent');
+let searchBar = document.getElementById('search');
 let menuItems = [{
     name: 'Hamburger',
     price: '6.99'
@@ -22,15 +23,20 @@ let menuItems = [{
 }, {
     name: 'Pizza',
     price: '10.99'
-}]
+}];
+
+function addToCart(menuItem) {
+    console.log(menuItem);
+    userModel.cart.push(menuItem);
+    setupCart();
+}
 
 function getRestaurantDetails(restaurant) {
-
     let modal = document.getElementById('modal1');
     let modalContent = document.getElementById('modalContent');
     let instance = M.Modal.getInstance(modal);
     let templateStr = `<h3>${restaurant.restaurant.name}</h3>`;
-    templateStr += `<p>Overall Rating: ${restaurant.restaurant.user_rating.aggregate_rating}</p>`
+    templateStr += `<p>Overall Rating: ${restaurant.restaurant.user_rating.aggregate_rating}/5</p>`
     templateStr += `<p>Price Rating: ${restaurant.restaurant.price_range}/5</p>`;
     templateStr += `<p>Cuisine: ${restaurant.restaurant.cuisines}</p>`;
     templateStr += `<p>Address: ${restaurant.restaurant.location.address}</p>`;
@@ -42,14 +48,32 @@ function getRestaurantDetails(restaurant) {
                                 <p>\$${menuItem.price}</p>
                                 </div>
                                 <div class="card-action">
-                                <a class="waves-effect waves-light btn-large"><i class="material-icons left">add_shopping_cart</i>Add To Cart</a>
+                                <a class="waves-effect waves-light btn-large" id="addToCart"><i class="material-icons left">add_shopping_cart</i>Add To Cart</a>
                             </div>
                         </div>`;
         templateStr += cardTemplate;
-    })
-
+    });
+    let addToCartButtons = document.querySelectorAll('#addToCart');
+    addToCartButtons.forEach(button => {
+        button.addEventListener('click', event => {
+            addToCart()
+        });
+    });
     modalContent.innerHTML = templateStr;
     instance.open();
+}
+
+function setupCart() {
+    let totalPriceView = document.getElementById('totalPrice');
+    let total = 0.00;
+    let templateStr = '';
+    userModel.cart.forEach(item => {
+        let cardTemplate = `<div class="card-panel teal" id="restaurantCard">
+                                <span class="white-text">${item.name} - ${item.price}</span>
+                            </div>`
+        total += item.price;
+    });
+    totalPriceView.innerHTML = `\$${total}`;
 }
 
 function setupFavorties() {
@@ -116,6 +140,7 @@ function setupView() {
         setupFavorties();
         setupPopular();
         setupAlphabetical();
+        setupCart();
         let restaurantCards = document.querySelectorAll('#restaurantCard');
         console.log(restaurantCards);
         restaurantCards.forEach(restaurantCard => {
