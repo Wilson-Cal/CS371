@@ -119,5 +119,5 @@ window.onload = event => {
 // Initialize the modal
 document.addEventListener('DOMContentLoaded', function () {
     var elems = document.querySelectorAll('.modal');
-    var instances = M.Modal.init(elems, options);
+    var instances = M.Modal.init(elems);
 });
