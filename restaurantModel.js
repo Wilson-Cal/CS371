@@ -22,7 +22,7 @@ export class RestaurantModel {
 
     getPopularRestaurants() {
         return this.restaurants.filter(restaurant => {
-            return restaurant.restaurant.user_rating.aggregate_rating >= 4.0;
+            return restaurant.restaurant.user_rating.aggregate_rating >= 3.5;
         });
     }
 

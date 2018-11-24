@@ -12,8 +12,14 @@ let spinner = document.getElementById('loader');
 let restaurantContent = document.getElementById('restaurantContent');
 
 function getRestaurantDetails(restaurant) {
-    var instance = M.Modal.getInstance(document.getElementById('modal1'));
+    console.log(restaurant);
+    let modal = document.getElementById('modal1');
+    let modalContent = document.getElementById('modalContent');
+    let instance = M.Modal.getInstance(modal);
+    let templateStr = `<h3>${restaurant.restaurant.name}</h3>`
+    modalContent.innerHTML = templateStr;
     instance.open();
+
 }
 
 function setupFavorties() {
