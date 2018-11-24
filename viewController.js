@@ -25,7 +25,7 @@ function setupFavorties() {
                             </div>`;
         if (i === 0) {
             templateStr += '<div class="row">';
-        } else if (i % 5 === 0) {
+        } else if (i % 4 === 0) {
             templateStr += '</div><div class="row">';
         }
         templateStr += `<div class="col s12 m4 l3">${cardTemplate}</div>`;
@@ -61,7 +61,7 @@ function setupAlphabetical() {
                             </div>`;
         if (i === 0) {
             templateStr += '<div class="row">';
-        } else if (i % 5 === 0) {
+        } else if (i % 4 === 0) {
             templateStr += '</div><div class="row">';
         }
         templateStr += `<div class="col s12 m4 l3">${cardTemplate}</div>`;
