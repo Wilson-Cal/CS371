@@ -54,6 +54,7 @@ function getRestaurantDetails(restaurant) {
         templateStr += cardTemplate;
     });
     let addToCartButtons = document.querySelectorAll('#addToCart');
+    console.log(addToCartButtons);
     addToCartButtons.forEach(button => {
         button.addEventListener('click', event => {
             console.log('hello there');
