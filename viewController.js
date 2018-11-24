@@ -210,10 +210,10 @@ favoriteToggle.addEventListener('click', event => {
     let restaurantName = document.getElementById('restaurantName').innerHTML;
     console.log(restaurantName);
     console.log(event.path[0].innerText);
-    if (event.path[0].innerText.includes('Add')) {
+    if (event.path[0].innerText.includes('ADD')) {
         userModel.favorites.push(restaurantName);
         favoriteToggle.innerHTML = '<i class="material-icons left">star</i>Remove from Favorites';
-    } else if (event.path[0].innerText.includes('Remove')) {
+    } else if (event.path[0].innerText.includes('REMOVE')) {
         let index = userModel.favorites.findIndex(favorite => {
             return favorite.toLowerCase() === restaurantName.toLowerCase();
         });
