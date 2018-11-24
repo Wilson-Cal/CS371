@@ -10,6 +10,7 @@ let userModel = new UserModel();
 let restaurantModel = new RestaurantModel();
 let spinner = document.getElementById('loader');
 let restaurantContent = document.getElementById('restaurantContent');
+let searchContent = document.getElementById('searchContent');
 let searchBarView = document.getElementById('search');
 let menuItems = [{
     name: 'Hamburger',
@@ -163,8 +164,35 @@ function setupView() {
     });
 }
 
+function setupSearchResults(searchResults) {
+    let searchResultsView = document.getElementById('searchResults');
+    let templateStr = ''
+    searchResults.forEach((result, i) => {
+        let cardTemplate = `<div class="card-panel teal" id="restaurantCard">
+                                <span class="white-text">${result.restaurant.name}</span>
+                            </div>`;
+        if (i === 0) {
+            templateStr += '<div class="row">';
+        } else if (i % 4 === 0) {
+            templateStr += '</div><div class="row">';
+        }
+        templateStr += `<div class="col s12 m4 l3">${cardTemplate}</div>`;
+    });
+    searchResultsView.innerHTML = templateStr;
+}
+
 searchBarView.addEventListener('keyup', event => {
-    console.log(searchBarView.value);
+    if (searchBarView.value.length > 0) {
+        let fData = restaurantModel.restaurants.filter(restaurant => {
+            return restaurant.restaurant.name.includes(searchBarView.value);
+        });
+        setupSearchResults(fData);
+        restaurantContent.style.display = 'none';
+        searchContent.style.display = 'block';
+    } else {
+        searchContent.style.display = 'none';
+        restaurantContent.style.display = 'block';
+    }
 });
 
 // Start Here

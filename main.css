@@ -2,6 +2,10 @@
     display: none;
 }
 
+#searchContent {
+    display: none;
+}
+
 #restaurantCard:hover {
     cursor: pointer;
     opacity: .8;
