@@ -79,7 +79,7 @@ function setupView() {
         setupFavorties();
         setupPopular();
         setupAlphabetical();
-        let restaurantCards = document.querySelectorAll('#loader');
+        let restaurantCards = document.querySelectorAll('#restaurantCard');
         console.log(restaurantCards);
         restaurantCards.forEach(restaurantCard => {
             restaurantCard.addEventListener('onclick', event => {
