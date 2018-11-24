@@ -82,7 +82,7 @@ function setupView() {
         let restaurantCards = document.querySelectorAll('#restaurantCard');
         console.log(restaurantCards);
         restaurantCards.forEach(restaurantCard => {
-            restaurantCard.addEventListener('onclick', event => {
+            restaurantCard.addEventListener('click', event => {
                 console.log(event);
             });
         });
