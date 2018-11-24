@@ -13,16 +13,16 @@ let restaurantContent = document.getElementById('restaurantContent');
 let searchBar = document.getElementById('search');
 let menuItems = [{
     name: 'Hamburger',
-    price: '6.99'
+    price: 6.99
 }, {
     name: 'Burrito',
-    price: '7.99'
+    price: 7.99
 }, {
     name: 'Steak',
-    price: '11.99'
+    price: 11.99
 }, {
     name: 'Pizza',
-    price: '10.99'
+    price: 10.99
 }];
 
 function addToCart(menuItem) {
