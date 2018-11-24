@@ -56,6 +56,7 @@ function getRestaurantDetails(restaurant) {
     let addToCartButtons = document.querySelectorAll('#addToCart');
     addToCartButtons.forEach(button => {
         button.addEventListener('click', event => {
+            console.log('hello there');
             addToCart()
         });
     });
