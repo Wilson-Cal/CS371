@@ -76,6 +76,7 @@ function setupCart() {
                                 <span class="white-text">${item.name} - ${item.price}</span>
                             </div>`
         total += item.price;
+        templateStr += cardTemplate;
     });
     totalPriceView.innerHTML = `\$${total}`;
 }
