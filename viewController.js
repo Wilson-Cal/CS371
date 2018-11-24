@@ -73,12 +73,8 @@ function setupCart() {
     let total = 0.00;
     let templateStr = '';
     userModel.cart.forEach(item => {
-        let cardTemplate = `<div class="row">
-                                <div class="col s12 m4 l3">
-                                    <div class="card-panel teal" id="cartCard">
-                                    <span class="white-text">${item.name} - ${item.price}</span>
-                                    </div>
-                                </div>
+        let cardTemplate = `<div class="card-panel teal" id="cartCard">
+                                <span class="white-text">${item.name} - ${item.price}</span>
                             </div>`
         total += item.price;
         templateStr += cardTemplate;
