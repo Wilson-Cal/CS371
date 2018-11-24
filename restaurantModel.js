@@ -45,9 +45,9 @@ export class RestaurantModel {
 
     getFavoriteRestaurants(favorites) {
         let favoriteRestaurants = this.restaurants.filter(restaurant => {
-            return favoriteRestaurants.includes(restaurant.restaurant.name);
+            return favorites.includes(restaurant.restaurant.name);
         });
-        return favorites.sort((restaurantA, restaurantB) => {
+        return favoriteRestaurants.sort((restaurantA, restaurantB) => {
             if (restaurantA.restaurant.name.toLowerCase() < restaurantB.restaurant.name.toLowerCase()) {
                 return -1;
             }
