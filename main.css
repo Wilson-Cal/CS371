@@ -11,6 +11,11 @@
     opacity: .8;
 }
 
+#searchCard:hover {
+    cursor: pointer;
+    opacity: .8;
+}
+
 #loader {
     position: absolute;
     top: 0;

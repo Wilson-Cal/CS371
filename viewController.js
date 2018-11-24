@@ -151,7 +151,6 @@ function setupView() {
         setupAlphabetical();
         setupCart();
         let restaurantCards = document.querySelectorAll('#restaurantCard');
-        console.log(restaurantCards);
         restaurantCards.forEach(restaurantCard => {
             restaurantCard.addEventListener('click', event => {
                 getRestaurantDetails(restaurantModel.restaurants.find(restaurant => {
@@ -168,7 +167,7 @@ function setupSearchResults(searchResults) {
     let searchResultsView = document.getElementById('searchResults');
     let templateStr = ''
     searchResults.forEach((result, i) => {
-        let cardTemplate = `<div class="card-panel teal" id="restaurantCard">
+        let cardTemplate = `<div class="card-panel teal" id="searchCard">
                                 <span class="white-text">${result.restaurant.name}</span>
                             </div>`;
         if (i === 0) {
@@ -187,6 +186,14 @@ searchBarView.addEventListener('keyup', event => {
             return restaurant.restaurant.name.toLowerCase().includes(searchBarView.value.toLowerCase());
         });
         setupSearchResults(fData);
+        let searchCards = document.querySelectorAll('#searchCard');
+        searchCards.forEach(searchCard => {
+            searchCard.addEventListener('click', event => {
+                getRestaurantDetails(restaurantModel.restaurants.find(restaurant => {
+                    return restaurant.restaurant.name.toLowerCase() === event.path[0].innerText.toLowerCase();
+                }));
+            });
+        });
         restaurantContent.style.display = 'none';
         searchContent.style.display = 'block';
     } else {
