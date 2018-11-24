@@ -16,7 +16,7 @@ export class UserModel {
                 callback(null, suggestedLocation.location_suggestions[0].id)
             }
         };
-        xhttp.open('GET', 'https://developers.zomato.com/api/v2.1/cities?lat=43.8261766&lon=-111.79344119999999', true);
+        xhttp.open('GET', `https://developers.zomato.com/api/v2.1/cities?lat=${this.location.lat}&lon=${this.location.lon}`, true);
         xhttp.setRequestHeader("user-key", "1f04820e425e353990598580ecc354e3");
         xhttp.send();
     }

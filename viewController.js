@@ -9,6 +9,19 @@ import {
 let userModel = new UserModel();
 let restaurantModel = new RestaurantModel();
 
+
+function setupView() {
+    restaurantModel.getRestaurants(userModel.location.id, (err, restaurants) => {
+        if (err) {
+            console.error(err);
+        }
+        restaurantModel.restaurants = restaurants;
+        console.log(restaurantModel);
+    });
+}
+
+
+// Start Here
 window.onload = event => {
     if (navigator.geolocation) {
         navigator.geolocation.getCurrentPosition(positon => {
@@ -19,11 +32,13 @@ window.onload = event => {
                     console.error(err);
                 } else {
                     userModel.location.id = locationID;
-                    console.log(userModel);
                 }
+                setupView();
             });
         });
     } else {
-        console.log('Geolocation is not supported by this browser.');
+        // Default to Idaho Falls, ID
+        userModel.location.id = 679
+        setupView();
     }
 };
