@@ -38,7 +38,7 @@ function setupPopular() {
     let popularRestaurants = restaurantModel.getPopularRestaurants();
     let templateStr = ''
     popularRestaurants.forEach((pRestaurant, i) => {
-        let cardTemplate = `<div class="card-panel teal">
+        let cardTemplate = `<div class="card-panel teal" onclick="getRestaurantDetails(this)" id="restaurantCard">
                                 <span class="white-text">${pRestaurant.restaurant.name}</span>
                             </div>`;
         if (i === 0) {
@@ -56,7 +56,7 @@ function setupAlphabetical() {
     let alphabeticalRestaurants = restaurantModel.getAlphabeticalRestaurants();
     let templateStr = ''
     alphabeticalRestaurants.forEach((aRestaurant, i) => {
-        let cardTemplate = `<div class="card-panel teal">
+        let cardTemplate = `<div class="card-panel teal" onclick="getRestaurantDetails(this)" id="restaurantCard">
                                 <span class="white-text">${aRestaurant.restaurant.name}</span>
                             </div>`;
         if (i === 0) {
