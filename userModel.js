@@ -13,9 +13,7 @@ export class UserModel {
         xhttp.onreadystatechange = function () {
             if (this.readyState == 4 && this.status == 200) {
                 let suggestedLocation = JSON.parse(this.responseText);
-                console.log(suggestedLocation.location_suggestions[0].id);
-                this.location.id = suggestedLocation.location_suggestions[0].id;
-                callback()
+                callback(null, suggestedLocation.location_suggestions[0].id)
             }
         };
         xhttp.open('GET', 'https://developers.zomato.com/api/v2.1/cities?lat=43.8261766&lon=-111.79344119999999', true);

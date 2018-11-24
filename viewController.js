@@ -14,9 +14,12 @@ window.onload = event => {
         navigator.geolocation.getCurrentPosition(positon => {
             userModel.location.lat = positon.coords.latitude;
             userModel.location.lon = positon.coords.longitude;
-            userModel.getSuggestedLocationID(err => {
+            userModel.getSuggestedLocationID((err, locationID) => {
                 if (err) {
                     console.error(err);
+                } else {
+                    userModel.location.id = locationID;
+                    console.log(userModel);
                 }
             });
         });
