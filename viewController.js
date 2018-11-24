@@ -96,6 +96,9 @@ function setupFavorties() {
     let favoritesView = document.getElementById('favorites');
     let favoriteRestaurants = restaurantModel.getFavoriteRestaurants(userModel.favorites);
     let templateStr = ''
+    if (favoriteRestaurants.length = 0) {
+        favoritesView.innerHTML = '<p>Add some favorites to have quick access to them!</p>'
+    }
     favoriteRestaurants.forEach((fRestaurant, i) => {
         let cardTemplate = `<div class="card-panel teal" id="restaurantCard">
                                 <span class="white-text">${fRestaurant.restaurant.name}</span>
