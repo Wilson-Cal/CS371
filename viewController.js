@@ -20,7 +20,7 @@ function setupFavorties() {
     let favoriteRestaurants = restaurantModel.getFavoriteRestaurants(userModel.favorites);
     let templateStr = ''
     favoriteRestaurants.forEach((fRestaurant, i) => {
-        let cardTemplate = `<div class="card-panel teal" onclick="getRestaurantDetails(this)" id="restaurantCard">
+        let cardTemplate = `<div class="card-panel teal" id="restaurantCard">
                                 <span class="white-text">${fRestaurant.restaurant.name}</span>
                             </div>`;
         if (i === 0) {
@@ -38,7 +38,7 @@ function setupPopular() {
     let popularRestaurants = restaurantModel.getPopularRestaurants();
     let templateStr = ''
     popularRestaurants.forEach((pRestaurant, i) => {
-        let cardTemplate = `<div class="card-panel teal" onclick="getRestaurantDetails(this)" id="restaurantCard">
+        let cardTemplate = `<div class="card-panel teal" id="restaurantCard">
                                 <span class="white-text">${pRestaurant.restaurant.name}</span>
                             </div>`;
         if (i === 0) {
@@ -56,7 +56,7 @@ function setupAlphabetical() {
     let alphabeticalRestaurants = restaurantModel.getAlphabeticalRestaurants();
     let templateStr = ''
     alphabeticalRestaurants.forEach((aRestaurant, i) => {
-        let cardTemplate = `<div class="card-panel teal" onclick="getRestaurantDetails(this)" id="restaurantCard">
+        let cardTemplate = `<div class="card-panel teal" id="restaurantCard">
                                 <span class="white-text">${aRestaurant.restaurant.name}</span>
                             </div>`;
         if (i === 0) {
@@ -79,6 +79,13 @@ function setupView() {
         setupFavorties();
         setupPopular();
         setupAlphabetical();
+        let restaurantCards = document.querySelectorAll('#loader');
+        console.log(restaurantCards);
+        restaurantCards.forEach(restaurantCard => {
+            restaurantCard.addEventListener('onclick', event => {
+                console.log(event);
+            });
+        });
         spinner.style.display = 'none';
         restaurantContent.style.display = 'block';
     });
