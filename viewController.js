@@ -68,6 +68,8 @@ function getRestaurantDetails(restaurant) {
     // Check if this restaurant is already favorited
     if (userModel.favorites.includes(restaurant.restaurant.name)) {
         favoriteToggle.innerHTML = '<i class="material-icons left">star</i>Remove from Favorites'
+    } else {
+        favoriteToggle.innerHTML = '<i class="material-icons left">star_border</i>Add from Favorites'
     }
     instance.open();
 }
@@ -105,7 +107,9 @@ function setupFavorties() {
         }
         templateStr += `<div class="col s12 m4 l3">${cardTemplate}</div>`;
     });
-    favoritesView.innerHTML = templateStr;
+    if (templateStr) {
+        favoritesView.innerHTML = templateStr;
+    }
 }
 
 function setupPopular() {
