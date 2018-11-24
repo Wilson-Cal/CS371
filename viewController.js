@@ -184,7 +184,7 @@ function setupSearchResults(searchResults) {
 searchBarView.addEventListener('keyup', event => {
     if (searchBarView.value.length > 0) {
         let fData = restaurantModel.restaurants.filter(restaurant => {
-            return restaurant.restaurant.name.includes(searchBarView.value);
+            return restaurant.restaurant.name.toLowerCase().includes(searchBarView.value.toLowerCase());
         });
         setupSearchResults(fData);
         restaurantContent.style.display = 'none';
