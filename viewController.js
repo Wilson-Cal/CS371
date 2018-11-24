@@ -48,7 +48,7 @@ function getRestaurantDetails(restaurant) {
                                 <p>\$${menuItem.price}</p>
                                 </div>
                                 <div class="card-action">
-                                <a class="waves-effect waves-light btn-large" id="addToCart"><i class="material-icons left">add_shopping_cart</i>Add To Cart</a>
+                                <a class="waves-effect waves-light btn-large" data-name="${menuItem.name}" id="addToCart"><i class="material-icons left">add_shopping_cart</i>Add To Cart</a>
                             </div>
                         </div>`;
         templateStr += cardTemplate;
@@ -58,7 +58,7 @@ function getRestaurantDetails(restaurant) {
     console.log(addToCartButtons);
     addToCartButtons.forEach(button => {
         button.addEventListener('click', event => {
-            console.log('hello there');
+            console.log(event);
             addToCart()
         });
     });
