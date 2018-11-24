@@ -208,8 +208,6 @@ searchBarView.addEventListener('keyup', event => {
 
 favoriteToggle.addEventListener('click', event => {
     let restaurantName = document.getElementById('restaurantName').innerHTML;
-    console.log(restaurantName);
-    console.log(event.path[0].innerText);
     if (event.path[0].innerText.includes('ADD')) {
         userModel.favorites.push(restaurantName);
         favoriteToggle.innerHTML = '<i class="material-icons left">star</i>Remove from Favorites';
@@ -222,8 +220,7 @@ favoriteToggle.addEventListener('click', event => {
             favoriteToggle.innerHTML = '<i class="material-icons left">star_border</i>Add from Favorites'
         }
     }
-
-    console.log(userModel.favorites);
+    setupFavorties();
 });
 
 // Start Here

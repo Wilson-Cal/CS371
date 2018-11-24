@@ -44,7 +44,17 @@ export class RestaurantModel {
     }
 
     getFavoriteRestaurants(favorites) {
-        return [];
-        // TODO
+        let favorites = this.restaurants.filter(restaurant => {
+            return favorites.includes(restaurant.restaurant.name);
+        });
+        return favorites.sort((restaurantA, restaurantB) => {
+            if (restaurantA.restaurant.name.toLowerCase() < restaurantB.restaurant.name.toLowerCase()) {
+                return -1;
+            }
+            if (restaurantA.restaurant.name.toLowerCase() > restaurantB.restaurant.name.toLowerCase()) {
+                return 1;
+            }
+            return 0;
+        });
     }
 }
