@@ -16,13 +16,9 @@ export class RestaurantModel {
         xhttp.send();
     }
 
-    getMenuItems(restaurant) {
-
-    }
-
     getPopularRestaurants() {
         return this.restaurants.filter(restaurant => {
-            return restaurant.restaurant.user_rating.aggregate_rating >= 3.5;
+            return restaurant.restaurant.user_rating.aggregate_rating >= 3.75;
         });
     }
 

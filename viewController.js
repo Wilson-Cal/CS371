@@ -12,14 +12,27 @@ let spinner = document.getElementById('loader');
 let restaurantContent = document.getElementById('restaurantContent');
 
 function getRestaurantDetails(restaurant) {
-    console.log(restaurant);
+    let cardTemplate = `<div class="card teal">
+                            <div class="card-content white-text">
+                                <span class="card-title">Hamburger</span>
+                                <p>$5.00</p>
+                                </div>
+                                <div class="card-action">
+                                <a class="waves-effect waves-light btn-large"><i class="material-icons left">add_shopping_cart</i>Add To Cart</a>
+                            </div>
+                        </div>`;
     let modal = document.getElementById('modal1');
     let modalContent = document.getElementById('modalContent');
     let instance = M.Modal.getInstance(modal);
-    let templateStr = `<h3>${restaurant.restaurant.name}</h3>`
+    let templateStr = `<h3>${restaurant.restaurant.name}</h3>`;
+    templateStr += `<p>Price Rating: ${restaurant.restaurant.price_range}/5</p>`;
+    templateStr += `<p>Cuisine: ${restaurant.restaurant.cuisines}</p>`;
+    templateStr += `<p>Address: ${restaurant.restaurant.location.address}</p>`;
+    templateStr += `<h5>Menu</h5>`
+    templateStr += cardTemplate;
+
     modalContent.innerHTML = templateStr;
     instance.open();
-
 }
 
 function setupFavorties() {
