@@ -100,7 +100,7 @@ function setupFavorties() {
         favoritesView.innerHTML = '<p>Add some favorites to have quick access to them!</p>'
     }
     favoriteRestaurants.forEach((fRestaurant, i) => {
-        let cardTemplate = `<div class="card-panel teal" id="restaurantCard">
+        let cardTemplate = `<div class="card-panel teal" id="favoriteCard">
                                 <span class="white-text">${fRestaurant.restaurant.name}</span>
                             </div>`;
         if (i === 0) {
@@ -112,6 +112,14 @@ function setupFavorties() {
     });
     if (templateStr) {
         favoritesView.innerHTML = templateStr;
+        let favoriteCards = document.querySelectorAll('#favoriteCard');
+        favoriteCards.forEach(card => {
+            card.addEventListener('click', event => {
+                getRestaurantDetails(restaurantModel.restaurants.find(restaurant => {
+                    return restaurant.restaurant.name.toLowerCase() === event.path[0].innerText.toLowerCase();
+                }));
+            });
+        })
     }
 }
 
@@ -227,8 +235,11 @@ favoriteToggle.addEventListener('click', event => {
             favoriteToggle.innerHTML = '<i class="material-icons left">star_border</i>Add from Favorites'
         }
     }
-    console.log(userModel.favorites);
     setupFavorties();
+    let restaurantCards = document.querySelectorAll('#restaurantCard');
+    restaurantCards.forEach(card => {
+        card.removeEventListener('click')
+    })
 });
 
 // Start Here
