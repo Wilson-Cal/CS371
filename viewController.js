@@ -208,16 +208,21 @@ searchBarView.addEventListener('keyup', event => {
 
 favoriteToggle.addEventListener('click', event => {
     let restaurantName = document.getElementById('restaurantName').innerHTML;
+    console.log(restaurantName);
+    console.log(event.path[0].innerText);
     if (event.path[0].innerText.includes('Add')) {
         userModel.favorites.push(restaurantName);
+        favoriteToggle.innerHTML = '<i class="material-icons left">star</i>Remove from Favorites';
     } else if (event.path[0].innerText.includes('Remove')) {
         let index = userModel.favorites.findIndex(favorite => {
             return favorite.toLowerCase() === restaurantName.toLowerCase();
         });
         if (index > -1) {
             userModel.favorites.splice(index, 1);
+            favoriteToggle.innerHTML = '<i class="material-icons left">star_border</i>Add from Favorites'
         }
     }
+
     console.log(userModel.favorites);
 });
 
