@@ -69,7 +69,7 @@ function getRestaurantDetails(restaurant) {
     if (userModel.favorites.includes(restaurant.restaurant.name)) {
         favoriteToggle.innerHTML = '<i class="material-icons left">star</i>Remove from Favorites'
     } else {
-        favoriteToggle.innerHTML = '<i class="material-icons left">star_border</i>Add from Favorites'
+        favoriteToggle.innerHTML = '<i class="material-icons left">star_border</i>Add to Favorites'
     }
     instance.open();
 }
@@ -224,6 +224,7 @@ favoriteToggle.addEventListener('click', event => {
             favoriteToggle.innerHTML = '<i class="material-icons left">star_border</i>Add from Favorites'
         }
     }
+    console.log(userModel.favorites);
     setupFavorties();
 });
 
