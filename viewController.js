@@ -10,7 +10,7 @@ let userModel = new UserModel();
 let restaurantModel = new RestaurantModel();
 let spinner = document.getElementById('loader');
 let restaurantContent = document.getElementById('restaurantContent');
-let searchBar = document.getElementById('search');
+let searchBarView = document.getElementById('search');
 let menuItems = [{
     name: 'Hamburger',
     price: 6.99
@@ -80,7 +80,9 @@ function setupCart() {
         templateStr += cardTemplate;
     });
     totalPriceView.innerHTML = `\$${total}`;
-    cartItemsView.innerHTML = templateStr;
+    if (templateStr) {
+        cartItemsView.innerHTML = templateStr;
+    }
 }
 
 function setupFavorties() {
@@ -137,7 +139,6 @@ function setupAlphabetical() {
     alphabeticalView.innerHTML = templateStr;
 }
 
-
 function setupView() {
     restaurantModel.getRestaurants(userModel.location.id, (err, restaurants) => {
         if (err) {
@@ -161,6 +162,10 @@ function setupView() {
         restaurantContent.style.display = 'block';
     });
 }
+
+searchBarView.addEventListener('keyup', event => {
+    console.log(event.path[0].innerText);
+});
 
 // Start Here
 window.onload = event => {
