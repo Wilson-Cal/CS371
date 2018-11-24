@@ -12,7 +12,8 @@ let spinner = document.getElementById('loader');
 let restaurantContent = document.getElementById('restaurantContent');
 
 function getRestaurantDetails(restaurant) {
-    console.log(restaurant);
+    var instance = M.Modal.getInstance(document.getElementById('modal1'));
+    instance.open();
 }
 
 function setupFavorties() {
@@ -114,3 +115,9 @@ window.onload = event => {
         setupView();
     }
 };
+
+// Initialize the modal
+document.addEventListener('DOMContentLoaded', function () {
+    var elems = document.querySelectorAll('.modal');
+    var instances = M.Modal.init(elems, options);
+});
