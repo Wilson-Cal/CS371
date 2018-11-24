@@ -236,10 +236,6 @@ favoriteToggle.addEventListener('click', event => {
         }
     }
     setupFavorties();
-    let restaurantCards = document.querySelectorAll('#restaurantCard');
-    restaurantCards.forEach(card => {
-        card.removeEventListener('click')
-    })
 });
 
 // Start Here
