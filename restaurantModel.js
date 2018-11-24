@@ -22,17 +22,17 @@ export class RestaurantModel {
 
     getPopularRestaurants() {
         return this.restaurants.filter(restaurant => {
-            console.log(restaurant);
-            return restaurant.user_rating.aggregate_rating >= 4.0;
+            console.log(restaurant.restaurant);
+            return restaurant.restaurant.user_rating.aggregate_rating >= 4.0;
         });
     }
 
     getAlphabeticalRestaurants() {
         return this.restaurants.sort((restaurantA, restaurantB) => {
-            if (restaurantA.name.toLowerCase() < restaurantB.name.toLowerCase()) {
+            if (restaurantA.restaurant.name.toLowerCase() < restaurantB.restaurant.name.toLowerCase()) {
                 return -1;
             }
-            if (restaurantA.name.toLowerCase() > restaurantB.name.toLowerCase()) {
+            if (restaurantA.restaurant.name.toLowerCase() > restaurantB.restaurant.name.toLowerCase()) {
                 return 1;
             }
             return 0;
