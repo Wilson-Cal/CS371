@@ -83,7 +83,7 @@ function setupView() {
         console.log(restaurantCards);
         restaurantCards.forEach(restaurantCard => {
             restaurantCard.addEventListener('click', event => {
-                console.log(event);
+                console.log(event.path[0].innerText);
             });
         });
         spinner.style.display = 'none';
