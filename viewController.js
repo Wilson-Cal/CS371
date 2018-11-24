@@ -11,8 +11,8 @@ let restaurantModel = new RestaurantModel();
 let spinner = document.getElementById('loader');
 let restaurantContent = document.getElementById('restaurantContent');
 
-function getRestaurantDetails(event) {
-    console.log(event);
+function getRestaurantDetails(restaurant) {
+    console.log(restaurant);
 }
 
 function setupFavorties() {
@@ -83,7 +83,9 @@ function setupView() {
         console.log(restaurantCards);
         restaurantCards.forEach(restaurantCard => {
             restaurantCard.addEventListener('click', event => {
-                console.log(event.path[0].innerText);
+                getRestaurantDetails(restaurantModel.restaurants.find(restaurant => {
+                    return restaurant.restaurant.name.toLowerCase() === event.path[0].innerText.toLowerCase();
+                }));
             });
         });
         spinner.style.display = 'none';
