@@ -11,8 +11,8 @@ let restaurantModel = new RestaurantModel();
 let spinner = document.getElementById('loader');
 let restaurantContent = document.getElementById('restaurantContent');
 
-function addCards(view, template) {
-
+function getRestaurantDetails(event) {
+    console.log(event);
 }
 
 function setupFavorties() {
@@ -20,7 +20,7 @@ function setupFavorties() {
     let favoriteRestaurants = restaurantModel.getFavoriteRestaurants(userModel.favorites);
     let templateStr = ''
     favoriteRestaurants.forEach((fRestaurant, i) => {
-        let cardTemplate = `<div class="card-panel teal">
+        let cardTemplate = `<div class="card-panel teal" onclick="getRestaurantDetails(this)" id="restaurantCard">
                                 <span class="white-text">${fRestaurant.restaurant.name}</span>
                             </div>`;
         if (i === 0) {
