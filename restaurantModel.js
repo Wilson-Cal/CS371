@@ -1,5 +1,5 @@
 export class RestaurantModel {
     constructor() {
-        restaurants = [];
+        this.restaurants = [];
     }
 }
