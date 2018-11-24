@@ -10,26 +10,43 @@ let userModel = new UserModel();
 let restaurantModel = new RestaurantModel();
 let spinner = document.getElementById('loader');
 let restaurantContent = document.getElementById('restaurantContent');
+let menuItems = [{
+    name: 'Hamburger',
+    price: '6.99'
+}, {
+    name: 'Burrito',
+    price: '7.99'
+}, {
+    name: 'Steak',
+    price: '11.99'
+}, {
+    name: 'Pizza',
+    price: '10.99'
+}]
 
 function getRestaurantDetails(restaurant) {
-    let cardTemplate = `<div class="card teal">
+
+    let modal = document.getElementById('modal1');
+    let modalContent = document.getElementById('modalContent');
+    let instance = M.Modal.getInstance(modal);
+    let templateStr = `<h3>${restaurant.restaurant.name}</h3>`;
+    templateStr += `<p>Overall Rating: ${restaurant.restaurant.user_rating.aggregate_rating}</p>`
+    templateStr += `<p>Price Rating: ${restaurant.restaurant.price_range}/5</p>`;
+    templateStr += `<p>Cuisine: ${restaurant.restaurant.cuisines}</p>`;
+    templateStr += `<p>Address: ${restaurant.restaurant.location.address}</p>`;
+    templateStr += `<h5>Menu</h5>`
+    menuItems.forEach(menuItem => {
+        let cardTemplate = `<div class="card teal">
                             <div class="card-content white-text">
-                                <span class="card-title">Hamburger</span>
-                                <p>$5.00</p>
+                                <span class="card-title">${menuItem.name}</span>
+                                <p>\$${menuItem.price}</p>
                                 </div>
                                 <div class="card-action">
                                 <a class="waves-effect waves-light btn-large"><i class="material-icons left">add_shopping_cart</i>Add To Cart</a>
                             </div>
                         </div>`;
-    let modal = document.getElementById('modal1');
-    let modalContent = document.getElementById('modalContent');
-    let instance = M.Modal.getInstance(modal);
-    let templateStr = `<h3>${restaurant.restaurant.name}</h3>`;
-    templateStr += `<p>Price Rating: ${restaurant.restaurant.price_range}/5</p>`;
-    templateStr += `<p>Cuisine: ${restaurant.restaurant.cuisines}</p>`;
-    templateStr += `<p>Address: ${restaurant.restaurant.location.address}</p>`;
-    templateStr += `<h5>Menu</h5>`
-    templateStr += cardTemplate;
+        templateStr += cardTemplate;
+    })
 
     modalContent.innerHTML = templateStr;
     instance.open();

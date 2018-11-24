@@ -17,8 +17,17 @@ export class RestaurantModel {
     }
 
     getPopularRestaurants() {
-        return this.restaurants.filter(restaurant => {
+        let popularRestaurants = this.restaurants.filter(restaurant => {
             return restaurant.restaurant.user_rating.aggregate_rating >= 3.75;
+        });
+        return popularRestaurants.sort((restaurantA, restaurantB) => {
+            if (restaurantA.restaurant.name.toLowerCase() < restaurantB.restaurant.name.toLowerCase()) {
+                return -1;
+            }
+            if (restaurantA.restaurant.name.toLowerCase() > restaurantB.restaurant.name.toLowerCase()) {
+                return 1;
+            }
+            return 0;
         });
     }
 

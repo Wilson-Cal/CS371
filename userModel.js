@@ -6,6 +6,7 @@ export class UserModel {
             id: ''
         };
         this.favorites = [];
+        this.cart = [];
     }
 
     getSuggestedLocationID(callback) {
