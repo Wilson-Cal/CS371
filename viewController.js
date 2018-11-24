@@ -74,7 +74,7 @@ function setupCart() {
     let templateStr = '';
     userModel.cart.forEach(item => {
         let cardTemplate = `<div class="card-panel teal" id="cartCard">
-                                <span class="white-text">${item.name} - ${item.price}</span>
+                                <span class="white-text">${item.name} - \$${item.price}</span>
                             </div>`
         total += item.price;
         templateStr += cardTemplate;
@@ -164,7 +164,7 @@ function setupView() {
 }
 
 searchBarView.addEventListener('keyup', event => {
-    console.log(event.path[0].innerText);
+    console.log(searchBarView.value);
 });
 
 // Start Here
