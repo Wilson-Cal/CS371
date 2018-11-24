@@ -53,6 +53,7 @@ function getRestaurantDetails(restaurant) {
                         </div>`;
         templateStr += cardTemplate;
     });
+    modalContent.innerHTML = templateStr;
     let addToCartButtons = document.querySelectorAll('#addToCart');
     console.log(addToCartButtons);
     addToCartButtons.forEach(button => {
@@ -61,7 +62,6 @@ function getRestaurantDetails(restaurant) {
             addToCart()
         });
     });
-    modalContent.innerHTML = templateStr;
     instance.open();
 }
 
