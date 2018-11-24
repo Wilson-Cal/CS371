@@ -21,7 +21,7 @@ function setupFavorties() {
     let templateStr = ''
     favoriteRestaurants.forEach((fRestaurant, i) => {
         let cardTemplate = `<div class="card-panel teal">
-                                <span class="white-text">${fRestaurant.name}</span>
+                                <span class="white-text">${fRestaurant.restaurant.name}</span>
                             </div>`;
         if (i === 0) {
             templateStr += '<div class="row">';
@@ -39,11 +39,11 @@ function setupPopular() {
     let templateStr = ''
     popularRestaurants.forEach((pRestaurant, i) => {
         let cardTemplate = `<div class="card-panel teal">
-                                <span class="white-text">${pRestaurant.name}</span>
+                                <span class="white-text">${pRestaurant.restaurant.name}</span>
                             </div>`;
         if (i === 0) {
             templateStr += '<div class="row">';
-        } else if (i % 5 === 0) {
+        } else if (i % 4 === 0) {
             templateStr += '</div><div class="row">';
         }
         templateStr += `<div class="col s12 m4 l3">${cardTemplate}</div>`;
@@ -57,7 +57,7 @@ function setupAlphabetical() {
     let templateStr = ''
     alphabeticalRestaurants.forEach((aRestaurant, i) => {
         let cardTemplate = `<div class="card-panel teal">
-                                <span class="white-text">${aRestaurant.name}</span>
+                                <span class="white-text">${aRestaurant.restaurant.name}</span>
                             </div>`;
         if (i === 0) {
             templateStr += '<div class="row">';
