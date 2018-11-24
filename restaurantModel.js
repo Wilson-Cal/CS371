@@ -15,4 +15,32 @@ export class RestaurantModel {
         xhttp.setRequestHeader("user-key", "1f04820e425e353990598580ecc354e3");
         xhttp.send();
     }
+
+    getMenuItems(restaurant) {
+
+    }
+
+    getPopularRestaurants() {
+        return this.restaurants.filter(restaurant => {
+            console.log(restaurant);
+            return restaurant.user_rating.aggregate_rating >= 4.0;
+        });
+    }
+
+    getAlphabeticalRestaurants() {
+        return this.restaurants.sort((restaurantA, restaurantB) => {
+            if (restaurantA.name.toLowerCase() < restaurantB.name.toLowerCase()) {
+                return -1;
+            }
+            if (restaurantA.name.toLowerCase() > restaurantB.name.toLowerCase()) {
+                return 1;
+            }
+            return 0;
+        });
+    }
+
+    getFavoriteRestaurants(favorites) {
+        return [];
+        // TODO
+    }
 }
