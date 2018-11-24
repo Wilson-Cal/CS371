@@ -1,9 +1,9 @@
 export class UserModel {
     constructor() {
         this.location = {
-            lat = '',
-            lon = '',
-            id = ''
+            lat: '',
+            lon: '',
+            id: ''
         };
         this.favorites = [];
     }
