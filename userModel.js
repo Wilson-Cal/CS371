@@ -12,7 +12,9 @@ export class UserModel {
         var xhttp = new XMLHttpRequest();
         xhttp.onreadystatechange = function () {
             if (this.readyState == 4 && this.status == 200) {
-                console.log(this.responseText);
+                let suggestedLocation = JSON.parse(this.responseText);
+                console.log(suggestedLocation.location_suggestions[0].id);
+                this.location.id = suggestedLocation.location_suggestions[0].id;
                 callback()
             }
         };
