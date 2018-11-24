@@ -68,6 +68,7 @@ function getRestaurantDetails(restaurant) {
 }
 
 function setupCart() {
+    let cartItemsView = document.getElementById('cartItems');
     let totalPriceView = document.getElementById('totalPrice');
     let total = 0.00;
     let templateStr = '';
@@ -79,6 +80,7 @@ function setupCart() {
         templateStr += cardTemplate;
     });
     totalPriceView.innerHTML = `\$${total}`;
+    cartItemsView.innerHTML = templateStr;
 }
 
 function setupFavorties() {
