@@ -253,12 +253,13 @@ window.onload = event => {
                 setupView();
             });
         });
-    } else {
-        // Default to Idaho Falls, ID
-        userModel.location.id = 679
-        setupView();
+        return;
     }
-};
+    console.log('hello there');
+    // Default to Idaho Falls, ID
+    userModel.location.id = 679
+    setupView();
+}
 
 // Initialize the modal
 document.addEventListener('DOMContentLoaded', function () {
