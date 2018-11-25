@@ -241,7 +241,6 @@ favoriteToggle.addEventListener('click', event => {
 // Start Here
 window.onload = event => {
     if (navigator.geolocation) {
-        console.log('hello there', navigator.geolocation);
         navigator.geolocation.getCurrentPosition(positon => {
             userModel.location.lat = positon.coords.latitude;
             userModel.location.lon = positon.coords.longitude;
@@ -253,13 +252,13 @@ window.onload = event => {
                 }
                 setupView();
             });
+        }, err => {
+            console.log(err);
+            // Default to Idaho Falls, ID
+            userModel.location.id = 679
+            setupView();
         });
-        return;
     }
-    console.log('hello there');
-    // Default to Idaho Falls, ID
-    userModel.location.id = 679
-    setupView();
 }
 
 // Initialize the modal
