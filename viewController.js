@@ -241,6 +241,7 @@ favoriteToggle.addEventListener('click', event => {
 // Start Here
 window.onload = event => {
     if (navigator.geolocation) {
+        console.log('hello there', navigator.geolocation);
         navigator.geolocation.getCurrentPosition(positon => {
             userModel.location.lat = positon.coords.latitude;
             userModel.location.lon = positon.coords.longitude;
