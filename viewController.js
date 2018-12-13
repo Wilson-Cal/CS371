@@ -15,16 +15,20 @@ let searchBarView = document.getElementById('search');
 let favoriteToggle = document.getElementById('favoriteToggle');
 let menuItems = [{
     name: 'Hamburger',
-    price: 6.99
+    price: 6.99,
+    image: 'http://icons.iconarchive.com/icons/google/noto-emoji-food-drink/256/32382-hamburger-icon.png'
 }, {
     name: 'Burrito',
-    price: 7.99
+    price: 7.99,
+    image: 'http://icons.iconarchive.com/icons/google/noto-emoji-food-drink/256/32388-burrito-icon.png'
 }, {
     name: 'Steak',
-    price: 11.99
+    price: 11.99,
+    image: 'http://icons.iconarchive.com/icons/aha-soft/desktop-buffet/256/Steak-icon.png'
 }, {
     name: 'Pizza',
-    price: 10.99
+    price: 10.99,
+    image: 'http://icons.iconarchive.com/icons/aha-soft/desktop-buffet/256/Pizza-icon.png'
 }];
 
 function addToCart(menuItem) {
@@ -49,6 +53,7 @@ function getRestaurantDetails(restaurant) {
                             <div class="card-content white-text">
                                 <span class="card-title">${menuItem.name}</span>
                                 <p>\$${menuItem.price}</p>
+                                <img src="${menuItem.image}">
                                 </div>
                                 <div class="card-action">
                                 <a class="waves-effect waves-light btn-large" data-name="${menuItem.name}" id="addToCart"><i class="material-icons left">add_shopping_cart</i>Add To Cart</a>
@@ -60,7 +65,10 @@ function getRestaurantDetails(restaurant) {
     let addToCartButtons = document.querySelectorAll('#addToCart');
     addToCartButtons.forEach(button => {
         button.addEventListener('click', event => {
-            console.log(event);
+            M.toast({
+                html: `Added To Cart`,
+                classes: 'teal',
+            });
             addToCart(menuItems.find(item => {
                 return event.path[0].dataset.name === item.name;
             }));
@@ -83,7 +91,7 @@ function setupCart() {
     userModel.cart.forEach(item => {
         if (item) {
             let cardTemplate = `<div class="card-panel teal" id="cartCard">
-                                <span class="white-text">${item.name} - \$${item.price}<i class="material-icons right" id="removeFromCart" data-name="${item.name}">restore_from_trash</i></span>
+                                <span class="white-text" style="font-size:18px">${item.name} - \$${item.price}<i class="material-icons right" id="removeFromCart" data-name="${item.name}">restore_from_trash</i></span>
                             </div>`
             total += item.price;
             templateStr += cardTemplate;
@@ -94,7 +102,7 @@ function setupCart() {
         userModel.cart.shift();
     }
     if (userModel.cart.length === 0) {
-        cartItemsView.innerHTML = '';
+        cartItemsView.innerHTML = `It's lonely in here! Add some items to your cart!`;
         return;
     }
     console.log(userModel.cart);
@@ -112,6 +120,10 @@ function setupCart() {
                 });
                 if (index > -1) {
                     userModel.cart.splice(index, 1);
+                    M.toast({
+                        html: `Removed From Cart`,
+                        classes: 'red darken-4',
+                    });
                     userModel.saveUserModel();
                 }
                 setupCart();
@@ -254,6 +266,10 @@ favoriteToggle.addEventListener('click', event => {
     if (event.path[0].innerText.includes('ADD')) {
         userModel.favorites.push(restaurantName);
         userModel.saveUserModel();
+        M.toast({
+            html: `Added To Favorites`,
+            classes: 'teal'
+        });
         favoriteToggle.innerHTML = '<i class="material-icons left">star</i>Remove from Favorites';
     } else if (event.path[0].innerText.includes('REMOVE')) {
         let index = userModel.favorites.findIndex(favorite => {
@@ -263,6 +279,10 @@ favoriteToggle.addEventListener('click', event => {
             userModel.favorites.splice(index, 1);
             userModel.saveUserModel();
             favoriteToggle.innerHTML = '<i class="material-icons left">star_border</i>Add from Favorites'
+            M.toast({
+                html: `Removed From Favorites`,
+                classes: 'red darken-4',
+            });
         }
     }
     setupFavorties();

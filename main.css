@@ -1,9 +1,36 @@
+body {
+    background-image: url(https://www.janiking.com/wp-content/uploads/2012/07/spizzico1.jpg);
+    background-repeat: no-repeat;
+    background-size: cover;
+    color: white;
+}
+
+#modalContent {
+    color: black;
+}
+
+#favorites>p {
+    font-size: 18px;
+}
+
 #restaurantContent {
     display: none;
 }
 
 #searchContent {
     display: none;
+}
+
+#restaurantCard {
+    font-size: 18px;
+}
+
+#searchCard {
+    font-size: 18px;
+}
+
+#favoriteCard {
+    font-size: 18px;
 }
 
 #restaurantCard:hover {
@@ -24,6 +51,13 @@
 #removeFromCart:hover {
     cursor: pointer;
     opacity: .8;
+}
+
+#toast-container {
+    top: auto !important;
+    left: auto !important;
+    bottom: 10%;
+    right: 7%;
 }
 
 
