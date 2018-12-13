@@ -102,7 +102,7 @@ function setupCart() {
         userModel.cart.shift();
     }
     if (userModel.cart.length === 0) {
-        cartItemsView.innerHTML = `It's lonely in here! Add some items to your cart!`;
+        cartItemsView.innerHTML = `<p style="font-size: 18px">It's lonely in here! Add some items to your cart!</p>`;
         return;
     }
     console.log(userModel.cart);

@@ -78,5 +78,6 @@ img {
     /* For mobile phones: */
     body {
         text-align: center;
+        background-image: linear-gradient(#6b3602, #c28e5b);
     }
 }
