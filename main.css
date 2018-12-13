@@ -5,6 +5,10 @@ body {
     color: white;
 }
 
+img {
+    max-width: 100%;
+}
+
 #modalContent {
     color: black;
 }
@@ -68,4 +72,12 @@ body {
     right: 0;
     bottom: 0;
     margin: auto;
+}
+
+@media only screen and (max-width: 768px) {
+
+    /* For mobile phones: */
+    body {
+        text-align: center;
+    }
 }
