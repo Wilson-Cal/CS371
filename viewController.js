@@ -159,6 +159,11 @@ function setupFavorties() {
                     return restaurant.restaurant.name.toLowerCase() === event.path[0].innerText.toLowerCase();
                 }));
             });
+            card.addEventListener('touchend', event => {
+                getRestaurantDetails(restaurantModel.restaurants.find(restaurant => {
+                    return restaurant.restaurant.name.toLowerCase() === event.path[0].innerText.toLowerCase();
+                }));
+            });
         })
     }
 }
