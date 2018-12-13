@@ -1,6 +1,7 @@
 body {
     background-image: url(https://www.janiking.com/wp-content/uploads/2012/07/spizzico1.jpg);
     background-size: cover;
+    background-repeat: no-repeat;
     color: white;
 }
 
@@ -79,5 +80,6 @@ img {
     body {
         text-align: center;
         background-image: linear-gradient(#6b3602, #c28e5b);
+
     }
 }
