@@ -21,6 +21,11 @@
     opacity: .8;
 }
 
+#removeFromCart:hover {
+    cursor: pointer;
+    opacity: .8;
+}
+
 
 #loader {
     position: absolute;

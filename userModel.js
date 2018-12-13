@@ -21,4 +21,22 @@ export class UserModel {
         xhttp.setRequestHeader("user-key", "1f04820e425e353990598580ecc354e3");
         xhttp.send();
     }
+
+    saveUserModel() {
+        localStorage.setItem('cs371User', JSON.stringify({
+            favorites: this.favorites,
+            cart: this.cart
+        }));
+    }
+
+    loadUserModel() {
+        let tempObj = JSON.parse(localStorage.getItem('cs371User'));
+        if (tempObj) {
+            this.cart = tempObj.cart;
+            this.favorites = tempObj.favorites;
+            return true;
+        } else {
+            return false;
+        }
+    }
 }

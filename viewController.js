@@ -30,6 +30,7 @@ let menuItems = [{
 function addToCart(menuItem) {
     console.log(menuItem);
     userModel.cart.push(menuItem);
+    userModel.saveUserModel();
     setupCart();
 }
 
@@ -80,15 +81,42 @@ function setupCart() {
     let total = 0.00;
     let templateStr = '';
     userModel.cart.forEach(item => {
-        let cardTemplate = `<div class="card-panel teal" id="cartCard">
-                                <span class="white-text">${item.name} - \$${item.price}</span>
+        if (item) {
+            let cardTemplate = `<div class="card-panel teal" id="cartCard">
+                                <span class="white-text">${item.name} - \$${item.price}<i class="material-icons right" id="removeFromCart" data-name="${item.name}">restore_from_trash</i></span>
                             </div>`
-        total += item.price;
-        templateStr += cardTemplate;
+            total += item.price;
+            templateStr += cardTemplate;
+        }
     });
     totalPriceView.innerHTML = `\$${total}`;
+    if (userModel.cart[0] == null) {
+        userModel.cart.shift();
+    }
+    if (userModel.cart.length === 0) {
+        cartItemsView.innerHTML = '';
+        return;
+    }
+    console.log(userModel.cart);
+    console.log(templateStr);
     if (templateStr) {
         cartItemsView.innerHTML = templateStr;
+        let cartItems = document.querySelectorAll('#removeFromCart');
+        cartItems.forEach(cartItem => {
+            cartItem.addEventListener('click', event => {
+                let removeItemName = event.path[0].dataset.name;
+                let index = userModel.cart.findIndex(item => {
+                    if (item) {
+                        return item.name.toLowerCase() === removeItemName.toLowerCase();
+                    }
+                });
+                if (index > -1) {
+                    userModel.cart.splice(index, 1);
+                    userModel.saveUserModel();
+                }
+                setupCart();
+            });
+        })
     }
 }
 
@@ -225,6 +253,7 @@ favoriteToggle.addEventListener('click', event => {
     let restaurantName = document.getElementById('restaurantName').innerHTML;
     if (event.path[0].innerText.includes('ADD')) {
         userModel.favorites.push(restaurantName);
+        userModel.saveUserModel();
         favoriteToggle.innerHTML = '<i class="material-icons left">star</i>Remove from Favorites';
     } else if (event.path[0].innerText.includes('REMOVE')) {
         let index = userModel.favorites.findIndex(favorite => {
@@ -232,11 +261,14 @@ favoriteToggle.addEventListener('click', event => {
         });
         if (index > -1) {
             userModel.favorites.splice(index, 1);
+            userModel.saveUserModel();
             favoriteToggle.innerHTML = '<i class="material-icons left">star_border</i>Add from Favorites'
         }
     }
     setupFavorties();
 });
+
+
 
 // Start Here
 window.onload = event => {
@@ -250,6 +282,7 @@ window.onload = event => {
                 } else {
                     userModel.location.id = locationID;
                 }
+                userModel.loadUserModel()
                 setupView();
             });
         }, err => {
