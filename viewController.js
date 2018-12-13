@@ -221,6 +221,11 @@ function setupView() {
                     return restaurant.restaurant.name.toLowerCase() === event.path[0].innerText.toLowerCase();
                 }));
             });
+            restaurantCard.addEventListener('touchend', event => {
+                getRestaurantDetails(restaurantModel.restaurants.find(restaurant => {
+                    return restaurant.restaurant.name.toLowerCase() === event.path[0].innerText.toLowerCase();
+                }));
+            });
         });
         spinner.style.display = 'none';
         restaurantContent.style.display = 'block';
